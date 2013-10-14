@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.5+'
+    }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+version '1.0'
+group 'com.readystatesoftware'
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+}
+
+android {
+    sourceSets {
+        main {
+            manifest.srcFile 'android-simpl3r/AndroidManifest.xml'
+            java.srcDirs = ['android-simpl3r/src']
+            res.srcDirs = ['android-simpl3r/res']
+        }
+    }
+
+     compileSdkVersion 18
+    buildToolsVersion "18.1.0"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 16
+    }
+}
+
+
+task wrapper(type: Wrapper) {
+  gradle = "1.6"
+}
+
+android.libraryVariants
+uploadArchives {
+    repositories {
+        mavenDeployer {
+           repository(url: "file://"+System.getProperty("user.home")+"/.m2/repository")
+        }
+    }
+}

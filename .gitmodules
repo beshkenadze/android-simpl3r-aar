@@ -1,0 +1,3 @@
+[submodule "android-simpl3r"]
+	path = android-simpl3r
+	url = git@github.com:jgilfelt/android-simpl3r.git
